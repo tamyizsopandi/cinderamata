@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinderamata.shop - Toko Oleh-Oleh & Souvenir</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background: #ff914d;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+    header span {
+      font-size: 0.9rem;
+    }
+    .container {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .product {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+    .product:hover {
+      transform: scale(1.03);
+    }
+    .product img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .product-content {
+      padding: 10px 15px;
+      text-align: center;
+    }
+    .product-content h3 {
+      margin: 8px 0;
+      font-size: 1rem;
+    }
+    .price {
+      color: #ff914d;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    button {
+      background: #ff914d;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #e47e38;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #333;
+      color: white;
+      font-size: 0.9rem;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🛍️ Cinderamata.shop</h1>
+    <span>Keranjang: <b id="cartCount">0</b> item</span>
+  </header>
+
+  <main class="container" id="productList">
+    <!-- Produk akan diisi oleh JavaScript -->
+  </main>
+
+  <footer>
+    &copy; 2025 Cinderamata.shop | Oleh-Oleh & Souvenir Nusantara
+  </footer>
+
+  <script>
+    const products = [
+      { name: "Gantungan Kunci Batik", price: 25000, image: "images/keychain.jpg" },
+      { name: "Miniatur Candi Borobudur", price: 85000, image: "images/candi.jpg" },
+      { name: "Kaos Bali", price: 65000, image: "images/kaos.jpg" },
+      { name: "Magnet Kulkas Nusantara", price: 25000, image: "images/magnet.jpg" },
+      { name: "Patung Wayang Kayu", price: 120000, image: "images/wayang.jpg" },
+    ];
+
+    const productList = document.getElementById("productList");
+    const cartCount = document.getElementById("cartCount");
+    let cart = 0;
+
+    // Tampilkan produk
+    products.forEach((item, index) => {
+      const card = document.createElement("div");
+      card.className = "product";
+      card.innerHTML = `
+        <img src="${item.image}" alt="${item.name}">
+        <div class="product-content">
+          <h3>${item.name}</h3>
+          <p class="price">Rp ${item.price.toLocaleString("id-ID")}</p>
+          <button onclick="addToCart(${index})">Tambah ke Keranjang</button>
+        </div>
+      `;
+      productList.appendChild(card);
+    });
+
+    function addToCart(i) {
+      cart++;
+      cartCount.textContent = cart;
+      alert(`${products[i].name} ditambahkan ke keranjang!`);
+    }
+  </script>
+</body>
+</html>
